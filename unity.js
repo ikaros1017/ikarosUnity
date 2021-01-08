@@ -62,10 +62,8 @@ Element.prototype.rotation = function (imgArr, t) {
     }
     HTMLStr += `</ul>
                 <div class="left">
-                    <p>L</p>
                 </div>
                 <div class="right">
-                    <p>R</p>
                 </div> `
     r.innerHTML = HTMLStr;
 
