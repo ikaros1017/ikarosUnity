@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.rotation {
+    overflow: hidden;
+    position: relative;
+}
+
+.rotation>div {
+    position: absolute;
+    height: 100%;
+    display: flex;
+}
+
+.rotation>div>div {
+    height: 100%;
+}
+
+.rotation>div img {
+    width: 100%;
+}
+
+.rotation>ul {
+    list-style: none;
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.rotation>ul>li {
+    float: left;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+.rotation>ul>li:not(:last-of-type) {
+    margin-right: 10px;
+}
+
+.rotation .active {
+    background-color: #66ccff;
+}
+
+.rotation>.left,
+.rotation>.right {
+    position: absolute;
+    top: 50%;
+    width: 6%;
+    height: 9%;
+    background-color: rgba(0, 0, 0);
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.rotation:hover>.left,
+.rotation:hover>.right {
+    opacity: .3;
+}
+
+.rotation>.left:hover,
+.rotation>.right:hover {
+    opacity: .6;
+}
+
+.rotation>.left {
+    left: 0;
+    transform: translate(-30%, -50%);
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.rotation>.left>p {
+    margin-right: 12px;
+}
+
+.rotation>.right {
+    right: 0;
+    transform: translate(30%, -50%);
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.rotation>.right>p {
+    margin-left: 10px;
+}
