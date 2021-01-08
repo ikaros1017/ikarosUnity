@@ -173,6 +173,7 @@ Element.prototype.rotation = function (imgArr, t) {
         }
         r.children[1].children[index].className = 'active';
     }
+<<<<<<< HEAD
 
     //清空active类名
     function clearClass(){
@@ -181,3 +182,6 @@ Element.prototype.rotation = function (imgArr, t) {
         }
     }
 }
+=======
+}
+>>>>>>> 6a5513bf8e08c4e77f8653ac7fc6dbba957d7364
