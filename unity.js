@@ -34,38 +34,34 @@ Element.prototype.rotation = function (imgArr, t) {
     let rWidth = r.clientWidth; //容器宽度
     //拼接字符串
     let HTMLStr = ` <div style="transform: translateX(${-rWidth}px);">
-        <div style="width:${rWidth}px">
-            <img src="${imgArr[imgArr.length-1]}">
-        </div>
+                        <div style="width:${rWidth}px">
+                            <img src="${imgArr[imgArr.length-1]}">
+                        </div>
         `
     for (let i = 0; i < imgArr.length; i++) {
         HTMLStr += `
         <div style="width:${rWidth}px">
-        <img src="${imgArr[i]}">
+            <img src="${imgArr[i]}">
         </div>`
     }
-    HTMLStr += `<div style="width:${rWidth}px">
-        <img src="${imgArr[0]}">
-        </div>
-        </div>
-        <ul>
+    HTMLStr += `    <div style="width:${rWidth}px">
+                        <img src="${imgArr[0]}">
+                    </div>
+                </div>
+                <ul>
         `
     for (let i = 0; i < imgArr.length; i++) {
         if (i == 0) {
-            HTMLStr += `
-        <li index='${i}' class="active"></li>`
+            HTMLStr += `<li index='${i}' class="active"></li>`
         } else {
-            HTMLStr += `
-        <li index='${i}'></li>`
+            HTMLStr += `<li index='${i}'></li>`
         }
 
     }
     HTMLStr += `</ul>
                 <div class="left">
-                    <p>L</p>
                 </div>
                 <div class="right">
-                    <p>R</p>
                 </div> `
     r.innerHTML = HTMLStr;
 
@@ -81,7 +77,7 @@ Element.prototype.rotation = function (imgArr, t) {
     };
     //鼠标移出打开定时器
     r.onmouseout = () => {
-        autoplay(5000)
+        autoplay(t)
     };
     //li元素绑定点击事件
     for (let i = 0; i < imgArr.length; i++) {
@@ -92,9 +88,7 @@ Element.prototype.rotation = function (imgArr, t) {
     function liC(e) {
         let index = Number(e.target.attributes[0].value);//点击的li元素index索引值
         //清空active类名
-        for (let i = 0; i < 3; i++) {
-            r.children[1].children[i].className = '';
-        }
+        clearClass();
         //赋予类名
         r.children[1].children[index].className = 'active';
         //移动的值
@@ -111,9 +105,8 @@ Element.prototype.rotation = function (imgArr, t) {
                 r.children[0].style.transform = `translateX(${-rWidth}px)`;
                 r_left = -rWidth;
                 index++;
-                for (let i = 0; i < 3; i++) {
-                    r.children[1].children[i].className = '';
-                }
+                //清空active类名
+                clearClass();
                 r.children[1].children[index].className = 'active';
                 setTimeout(() => {
                     r_left -= rWidth;
@@ -125,9 +118,8 @@ Element.prototype.rotation = function (imgArr, t) {
                 r.children[0].style.transition = `transform .3s`;
                 r.children[0].style.transform = `translateX(${r_left}px)`;
                 index++;
-                for (let i = 0; i < 3; i++) {
-                    r.children[1].children[i].className = '';
-                }
+                //清空active类名
+                clearClass();
                 if (index == 3) {
                     index = 0;
                 }
@@ -138,9 +130,8 @@ Element.prototype.rotation = function (imgArr, t) {
 
     //左按钮函数
     function left() {
-        for (let i = 0; i < 3; i++) {
-            r.children[1].children[i].className = '';
-        }
+        //清空active类名
+        clearClass();
         if (index == 0) {
             index = 2;
             r_left = 0;
@@ -162,9 +153,8 @@ Element.prototype.rotation = function (imgArr, t) {
 
     //右按钮函数
     function right() {
-        for (let i = 0; i < 3; i++) {
-            r.children[1].children[i].className = '';
-        }
+        //清空active类名
+        clearClass();
         if (index == 2) {
             index = 0;
             r_left = pdz;
@@ -182,5 +172,12 @@ Element.prototype.rotation = function (imgArr, t) {
             r.children[0].style.transform = `translateX(${r_left}px)`;
         }
         r.children[1].children[index].className = 'active';
+    }
+
+    //清空active类名
+    function clearClass(){
+        for (let i = 0; i < imgArr.length; i++) {
+            r.children[1].children[i].className = '';
+        }
     }
 }
