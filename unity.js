@@ -169,3 +169,33 @@ Element.prototype.rotation = function (imgArr,t) {
         r.children[1].children[index].className = 'active';
     }
 }
+function checkedType(target) {
+        return Object.prototype.toString.call(target).slice(8, -1); //返回检测的数据类型
+}
+function deepclone(data) {
+        var newData;
+        var targetType = checkedType(data);
+        if (targetType === "Object") {
+          newData = {};
+        } else if (targetType === "Array") {
+          newData = [];
+        } else {
+          return data;
+        }
+        for (let i in data) {
+          //获取遍历数据结构的每一项值
+          let value = data[i];
+          //判断目标结构里的每一项值是否存在对象/数组
+          if (
+            checkedType(value) === "Object" ||
+            checkedType(value) === "Array"
+          ) {
+            //继续遍历获取到的value值
+            newData[i] = deepclone(value);
+          } else {
+            //获取到的value值是基本的数据类型或者是函数
+            newData[i] = value;
+          }
+        }
+        return newData;
+}
